@@ -1,0 +1,13 @@
+main: com.kolinkrewinkel.BitLimitNPCs.BitLimitNPCs
+name: BitLimitNPCs
+version: ${project.version}
+author: Kolin Krewinkel
+description: NYI
+website: http://github.com/kolinkrewinkel/BitLimitNPCs/
+commands:
+    npc:
+        description: Undefined
+permissions:
+    npc.*:
+        description: Gives all permissions of BitLimit Tweaks plugin toggling.
+        default: op

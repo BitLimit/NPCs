@@ -1,0 +1,6 @@
+[submodule "master"]
+	path = master
+	url = git@github.com:kumpelblase2/Remote-Entities.git
+[submodule "remoteentities"]
+	path = remoteentities
+	url = git@github.com:kumpelblase2/Remote-Entities.git

@@ -7,7 +7,7 @@
 
   <groupId>com.kolinkrewinkel.BitLimitNPCs</groupId>
   <artifactId>BitLimitNPCs</artifactId>
-  <version>0.0.1</version>
+  <version>0.3.1</version>
   <name>BitLimitNPCs</name>
   <description>NPCs for BitLimit PS01</description>
 
@@ -17,23 +17,28 @@
 
   <repositories>
     <repository>
-        <id>sk89q-mvn2</id>
-        <url>http://mvn2.sk89q.com/repo</url>
-    </repository>
-    <repository>
-        <id>bukkit-repo</id>
+        <id>bukkit</id>
         <url>http://repo.bukkit.org/content/groups/public/</url>
     </repository>
-  </repositories>
-
+    <repository>
+      <id>remoteentities-repo</id>
+      <url>http://repo.infinityblade.de/remoteentities/snapshots</url>
+    </repository>
+</repositories>
+ 
   <dependencies>
     <dependency>
       <groupId>org.bukkit</groupId>
-      <artifactId>bukkit</artifactId>
-      <!-- Bukkit API Version, change if out dated -->
-      <version>1.4.6-R0.3</version>
-      <type>jar</type>
+      <artifactId>craftbukkit</artifactId>
+      <version>1.4.7-R0.2-SNAPSHOT</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>de.kumpelblase2</groupId>
+        <artifactId>remoteentities</artifactId>
+        <version>1.4-SNAPSHOT</version>
+        <scope>system</scope>
+        <systemPath>/Users/kolin/Projects/BitLimitNPCs/remoteentities/target/original-remoteentities-1.4-SNAPSHOT.jar</systemPath>
     </dependency>
     <!-- Following dependency is provided by CraftBukkit -->
     <dependency>

@@ -11,3 +11,4 @@ permissions:
     npc.*:
         description: Gives all permissions of BitLimit Tweaks plugin toggling.
         default: op
+depend: [RemoteEntities]

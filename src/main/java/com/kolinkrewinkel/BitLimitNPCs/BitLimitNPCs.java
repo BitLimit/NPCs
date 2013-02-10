@@ -9,16 +9,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class BitLimitNPCs extends JavaPlugin {
-    private JSONSerializer JSONSerializer;
     public EntityManager manager;
 
 
     @Override
     public void onEnable() {
-        new NPCListener(this);
-
-        System.out.println("Enabled.");
-
         try {
             this.manager = RemoteEntities.createManager(this);
             this.manager.setEntitySerializer(new JSONSerializer(this));
@@ -28,8 +23,6 @@ public class BitLimitNPCs extends JavaPlugin {
 
         }
         this.getCommand("npc").setExecutor(new NPCCommandExecutor(this));
-
-        System.out.println("Loaded entities!");
     }
 
     @Override

@@ -90,42 +90,26 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
     }
 
     private void createNPCWithArguments(CommandSender sender, String[] args) throws Exception {
-
-        sender.sendMessage("Created NPC.");
-
         if (args.length < 2) {
-            sender.sendMessage(ChatColor.RED + "More parameters required. Usage: ...");
+            sender.sendMessage(ChatColor.RED + "More parameters required. Usage: ... (not yet defined.)");
             return;
         }
 
         Player player = null;
 
-        if (sender instanceof Player) {
+        if (sender instanceof Player)
             player = (Player)sender;
-        }
 
         World firstWorld = Bukkit.getServer().getWorlds().get(0);
         Location spawnLocation = firstWorld.getSpawnLocation();
         RemotePlayer entity = (RemotePlayer)this.plugin.manager.createNamedEntity(RemoteEntityType.Human, sender instanceof Player ? player.getLocation() : firstWorld.getHighestBlockAt(spawnLocation).getLocation(), ChatColor.ITALIC + args[1]);
-        
-        entity.setPushable(false);
 
-        Player npc = (Player)entity.getBukkitEntity();
-        npc.setCanPickupItems(false);
-        npc.setRemoveWhenFarAway(false);
-        ItemStack axe = new ItemStack(Material.DIAMOND_AXE);
-        axe.addEnchantment(Enchantment.SILK_TOUCH, 1);
-        npc.setItemInHand(axe);
-
-        //Now we want him to look at the nearest player. This desire has a priority of 1 (the higher the better).
-        //Since we don't have any other desires 1 is totally fine.
-        //Note that when you have more than one desire with the same priority, both could get executed, but they'd need a different type (e.g. looking and moving)
-        //This does not get executed all the time. It might just get executed but he might take a break for 2 seconds after that. It's random.
         entity.getMind().addMovementDesire(new DesireLookRandomly(entity), 1);
         entity.getMind().addMovementDesire(new DesireLookAtNearest(entity, EntityHuman.class, 16F, 1.0F), 2);
-
         entity.getMind().addBehaviour(new BlacksmithInteractBehavior(entity, this.plugin));
 
         this.plugin.saveData();
+
+        Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.RESET + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
     }
 }

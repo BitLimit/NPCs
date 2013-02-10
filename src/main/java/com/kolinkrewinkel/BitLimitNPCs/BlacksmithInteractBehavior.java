@@ -1,8 +1,11 @@
 package com.kolinkrewinkel.BitLimitNPCs;
 
+import de.kumpelblase2.remoteentities.RemoteEntities;
 import de.kumpelblase2.remoteentities.api.RemoteEntity;
 import de.kumpelblase2.remoteentities.api.thinking.Behavior;
 import de.kumpelblase2.remoteentities.api.thinking.InteractBehavior;
+import de.kumpelblase2.remoteentities.api.thinking.goals.DesireLookAtNearest;
+import de.kumpelblase2.remoteentities.api.thinking.goals.DesireLookRandomly;
 import de.kumpelblase2.remoteentities.entities.RemotePlayer;
 import de.kumpelblase2.remoteentities.persistence.ParameterData;
 import org.bukkit.*;
@@ -21,11 +24,16 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         super(inEntity);
         this.plugin = inPlugin;
 
+        this.onEntityUpdate();
+    }
+
+    @Override
+    public void onEntityUpdate()
+    {
         this.m_entity.setPushable(false);
 
         Player npc = (Player)this.m_entity.getBukkitEntity();
         npc.setCanPickupItems(false);
-        npc.setRemoveWhenFarAway(false);
         ItemStack axe = new ItemStack(Material.DIAMOND_AXE);
         axe.addEnchantment(Enchantment.SILK_TOUCH, 1);
         npc.setItemInHand(axe);
@@ -43,8 +51,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         Player npc = (Player) behaviorEntity.getBukkitEntity();
         Location npcLocation = npc.getLocation();
 
-        //example usage
-        // Bukkit.getServer().broadcastMessage(Integer.toString(npc.getItemInHand().getType().getId()));
         ItemStack repairItem = inPlayer.getItemInHand();
 
         if (npc.getItemInHand().getType().getId() != 279) {
@@ -68,34 +74,52 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         Block closest = closestBlock(npcLocation, Material.ANVIL.getId());
 
         double distanceAway = npcLocation.distance(closest.getLocation());
-        // Bukkit.getServer().broadcastMessage("Found distance...");
         behaviorEntity.move(closest.getLocation());
 
         class FinishRepairTrip implements Runnable {
             private final Player npc;
             private final Location gaze;
+            private final Player toLookAt;
 
-            public FinishRepairTrip(Player npc, Location gaze) {
+            public FinishRepairTrip(Player npc, Location gaze, Player toLookAt) {
                 this.npc = npc;
                 this.gaze = gaze;
+                this.toLookAt = toLookAt;
             }
 
             public void run() {
+                RemoteEntity entity = RemoteEntities.getRemoteEntityFromEntity(this.npc);
+//                DesireLookAtNearest desireLookAtNearest = entity.getMind().getMovementDesire(DesireLookAtNearest.class);
+//                DesireLookRandomly desireLookRandomly = entity.getMind().getMovementDesire(DesireLookRandomly.class);
+//
+//                desireLookAtNearest.stopExecuting();
+//                desireLookRandomly.stopExecuting();
+
                 npc.setSneaking(true);
-                // npc.teleport(lookAt(npc.getLocation(), gaze));
+
+                if (this.gaze != this.npc.getLocation())
+                    entity.lookAt(this.gaze);
 
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                     public void run() {
                         npc.setSneaking(false);
 
                         npc.getWorld().playSound(npc.getLocation(), Sound.ANVIL_USE, 1F, 1F);
+                        RemoteEntity entity = RemoteEntities.getRemoteEntityFromEntity(npc);
+//
+//                        DesireLookAtNearest desireLookAtNearest = entity.getMind().getMovementDesire(DesireLookAtNearest.class);
+//                        DesireLookRandomly desireLookRandomly = entity.getMind().getMovementDesire(DesireLookRandomly.class);
+//
+//                        desireLookAtNearest.startExecuting();
+//                        desireLookRandomly.startExecuting();
+                        entity.lookAt(toLookAt);
                     }
                 }, 20L);
             }
         }
 
         Long wait = Math.round((distanceAway / 4) * 20);
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new FinishRepairTrip(npc, closest.getLocation()), wait);
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new FinishRepairTrip(npc, closest.getLocation(), inPlayer), wait);
 
         short zero = 0;
         repairItem.setDurability(zero);
@@ -143,22 +167,19 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
 
 
                 if (item.getItemMeta().hasDisplayName()) {
-                    this.player.sendMessage(ChatColor.AQUA + this.npc.getDisplayName() + ChatColor.GREEN + " repaired " + ChatColor.GOLD + item.getItemMeta().getDisplayName());
+                    this.player.sendMessage(ChatColor.AQUA + this.npc.getDisplayName() + ChatColor.GREEN + " repaired " + ChatColor.YELLOW + item.getItemMeta().getDisplayName() + ChatColor.GREEN + ".");
                 } else {
-                    this.player.sendMessage(ChatColor.AQUA + this.npc.getDisplayName() + ChatColor.GREEN + " repaired your " + ChatColor.GOLD + item.getType().name().replace("_", " ").toLowerCase());
+                    this.player.sendMessage(ChatColor.AQUA + this.npc.getDisplayName() + ChatColor.GREEN + " repaired your " + ChatColor.YELLOW + item.getType().name().replace("_", " ").toLowerCase() + ChatColor.GREEN + ".");
                 }
-
 
                 ItemStack axe = new ItemStack(Material.DIAMOND_AXE);
                 axe.addEnchantment(Enchantment.SILK_TOUCH, 1);
                 npc.setItemInHand(axe);
-
             }
         }
 
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new ReturnItem(inPlayer, repairItem, npc, indexOfPreviouslyHeldItem), (wait * 2) + 20L);
     }
-
 
     private String capitalizedString(String string) {
         return Character.toUpperCase(string.charAt(0)) + string.substring(1);
@@ -177,7 +198,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
                 }
             }
         }
-
 
         return world.getBlockAt(origin);
     }

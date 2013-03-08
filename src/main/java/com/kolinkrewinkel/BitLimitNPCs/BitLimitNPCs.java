@@ -10,7 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class BitLimitNPCs extends JavaPlugin {
     public EntityManager manager;
-
+    public NPCCommandExecutor commandExecutor;
 
     @Override
     public void onEnable() {
@@ -22,11 +22,14 @@ public class BitLimitNPCs extends JavaPlugin {
             this.manager = null;
 
         }
-        this.getCommand("npc").setExecutor(new NPCCommandExecutor(this));
+
+        this.commandExecutor = new NPCCommandExecutor(this);
+        this.getCommand("npc").setExecutor(this.commandExecutor);
     }
 
     @Override
     public void onDisable() {
+        this.commandExecutor.setEditingWithSender(false, Bukkit.getConsoleSender());
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
     }

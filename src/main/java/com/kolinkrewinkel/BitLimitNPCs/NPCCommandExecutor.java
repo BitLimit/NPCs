@@ -36,12 +36,19 @@ import org.bukkit.entity.Item;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 
 public class NPCCommandExecutor implements CommandExecutor, Listener {
     private final BitLimitNPCs plugin;
+    private boolean editing = false;
+    private ArrayList<String> npcNames = new ArrayList<String>();
 
     @EventHandler
     public void onDamageEvent(EntityDamageEvent event) {
+
+        if (!(event.getEntity() instanceof LivingEntity))
+            return;
+
         if (plugin.manager.isRemoteEntity((LivingEntity)event.getEntity())) {
             event.setCancelled(true);
         }
@@ -54,25 +61,38 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
     }
     
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender.hasPermission("npc.create")) {
-            if (args.length <= 1) {
-                sender.sendMessage(ChatColor.RED + "Too few parameters.");
+        if (args.length < 1) {
+            sender.sendMessage(ChatColor.RED + "Too few parameters.");
+            return false;
+        }
+
+        if (args[0].toLowerCase().equals("create") && sender.hasPermission("npc.create")) {
+            if (this.editing) {
+                sender.sendMessage(ChatColor.RED + "Creation is not allowed during pruning.");
                 return false;
             }
 
-            if (args[0].toLowerCase().equals("create")) {
-                try {
-                    createNPCWithArguments(sender, args);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return true;
-            } else {
-
+            if (args.length < 2) {
+                sender.sendMessage(ChatColor.RED + "Name required.");
+                return false;
             }
-        } else {
+
+            try {
+                createNPCWithArguments(sender, args);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return true;
+        } else if (args[0].toLowerCase().equals("prune") && sender.hasPermission("npc.prune"))
+            this.setEditingWithSender(!this.editing, sender);
+        else if (args[0].toLowerCase().equals("remove") && sender.hasPermission("npc.remove")) {
+            if (args.length < 2) {
+                sender.sendMessage(ChatColor.RED + "Entity ID required.");
+                return false;
+            }
+        } else
             sender.sendMessage(ChatColor.RED + "You don't have permission to execute this command.");
-        }
+
         return false;
     }
 
@@ -107,9 +127,34 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
         entity.getMind().addMovementDesire(new DesireLookRandomly(entity), 1);
         entity.getMind().addMovementDesire(new DesireLookAtNearest(entity, EntityHuman.class, 16F, 1.0F), 2);
         entity.getMind().addBehaviour(new BlacksmithInteractBehavior(entity, this.plugin));
-
         this.plugin.saveData();
 
         Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.RESET + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
+    }
+
+    public void setEditingWithSender(boolean editing, CommandSender sender) {
+
+        this.editing = editing;
+        if (this.editing) {
+            Bukkit.broadcastMessage(ChatColor.WHITE + "<" + sender.getName() + "> " + ChatColor.YELLOW + "NPC pruning started…");
+            npcNames.clear();
+
+            for (RemoteEntity entity : this.plugin.manager.getAllEntities()) {
+                if (entity instanceof RemotePlayer) {
+                    RemotePlayer player  = (RemotePlayer)entity;
+                    npcNames.add(player.getName());
+                    player.setName(Integer.toString(player.getID()));
+                }
+            }
+        } else {
+
+            Bukkit.broadcastMessage(ChatColor.WHITE + "<" + sender.getName() + "> " + ChatColor.GREEN + "NPC pruning completed.");
+
+            for (RemoteEntity entity : this.plugin.manager.getAllEntities()) {
+                if (entity instanceof RemotePlayer) {
+                    ((RemotePlayer) entity).setName(this.npcNames.remove(0));
+                }
+            }
+        }
     }
 }

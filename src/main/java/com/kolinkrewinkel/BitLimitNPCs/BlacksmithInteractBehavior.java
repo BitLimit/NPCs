@@ -30,6 +30,9 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
     @Override
     public void onEntityUpdate()
     {
+        if (this.m_entity.getBukkitEntity() == null)
+            return;
+
         this.m_entity.setPushable(false);
 
         Player npc = (Player)this.m_entity.getBukkitEntity();
@@ -37,6 +40,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         ItemStack axe = new ItemStack(Material.DIAMOND_AXE);
         axe.addEnchantment(Enchantment.SILK_TOUCH, 1);
         npc.setItemInHand(axe);
+        npc.setRemoveWhenFarAway(false);
     }
 
     public BlacksmithInteractBehavior(ParameterData[] parameters)

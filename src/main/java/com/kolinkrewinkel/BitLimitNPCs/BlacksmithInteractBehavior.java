@@ -27,7 +27,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         this.onEntityUpdate();
     }
 
-    @Override
     public void onEntityUpdate()
     {
         if (this.m_entity.getBukkitEntity() == null)
@@ -48,8 +47,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         this((RemoteEntity)parameters[0].value, (Plugin)parameters[1].value);
     }
 
-
-    @Override
     public void onInteract(Player inPlayer) {
         RemotePlayer behaviorEntity = (RemotePlayer) this.getRemoteEntity();
         Player npc = (Player) behaviorEntity.getBukkitEntity();
@@ -93,12 +90,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
 
             public void run() {
                 RemoteEntity entity = RemoteEntities.getRemoteEntityFromEntity(this.npc);
-//                DesireLookAtNearest desireLookAtNearest = entity.getMind().getMovementDesire(DesireLookAtNearest.class);
-//                DesireLookRandomly desireLookRandomly = entity.getMind().getMovementDesire(DesireLookRandomly.class);
-//
-//                desireLookAtNearest.stopExecuting();
-//                desireLookRandomly.stopExecuting();
-
                 npc.setSneaking(true);
 
                 if (this.gaze != this.npc.getLocation())
@@ -206,7 +197,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         return world.getBlockAt(origin);
     }
 
-    @Override
     public Object[] getConstructionals()
     {
         Object[] constructionals = new Object[2];

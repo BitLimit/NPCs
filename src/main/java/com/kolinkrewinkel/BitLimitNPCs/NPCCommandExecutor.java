@@ -37,11 +37,12 @@ import org.bukkit.entity.Item;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class NPCCommandExecutor implements CommandExecutor, Listener {
     private final BitLimitNPCs plugin;
-    private boolean editing = false;
-    private ArrayList<String> npcNames = new ArrayList<String>();
+    public boolean editing = false;
+    private HashMap<RemoteEntity, String> NPCNames = new HashMap<RemoteEntity, String>();
 
     @EventHandler
     public void onDamageEvent(EntityDamageEvent event) {
@@ -90,6 +91,19 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
                 sender.sendMessage(ChatColor.RED + "Entity ID required.");
                 return false;
             }
+
+            if (!this.editing) {
+                sender.sendMessage(ChatColor.RED + "Pruning mode must be enabled.");
+                return false;
+            }
+
+            int ID = Integer.parseInt(args[1]);
+            RemoteEntity entity = this.plugin.manager.getRemoteEntityByID(ID);
+
+            this.NPCNames.remove(entity);
+            this.plugin.manager.removeEntity(ID, true);
+
+            this.setEditingWithSender(true, sender);
         } else
             sender.sendMessage(ChatColor.RED + "You don't have permission to execute this command.");
 
@@ -134,15 +148,19 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
 
     public void setEditingWithSender(boolean editing, CommandSender sender) {
 
+        boolean wasEditing = this.editing;
         this.editing = editing;
         if (this.editing) {
-            Bukkit.broadcastMessage(ChatColor.WHITE + "<" + sender.getName() + "> " + ChatColor.YELLOW + "NPC pruning started…");
-            npcNames.clear();
+            if (!wasEditing)
+                Bukkit.broadcastMessage(ChatColor.WHITE + "<" + sender.getName() + "> " + ChatColor.YELLOW + "NPC pruning started…");
 
             for (RemoteEntity entity : this.plugin.manager.getAllEntities()) {
                 if (entity instanceof RemotePlayer) {
-                    RemotePlayer player  = (RemotePlayer)entity;
-                    npcNames.add(player.getName());
+                    RemotePlayer player = (RemotePlayer)entity;
+
+                    if (!NPCNames.containsKey(entity))
+                        NPCNames.put(entity, player.getName());
+
                     player.setName(Integer.toString(player.getID()));
                 }
             }
@@ -152,9 +170,29 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
 
             for (RemoteEntity entity : this.plugin.manager.getAllEntities()) {
                 if (entity instanceof RemotePlayer) {
-                    ((RemotePlayer) entity).setName(this.npcNames.remove(0));
+                    String name = this.NPCNames.get(entity);
+                    if (name == null)
+                        continue;
+
+                    ((RemotePlayer) entity).setName(name);
                 }
             }
+
+            this.NPCNames.clear();
+
+            class DelayedReload implements Runnable {
+                private BitLimitNPCs plugin;
+
+                DelayedReload(BitLimitNPCs plugin) {
+                    this.plugin = plugin;
+                }
+
+                public void run() {
+                    this.plugin.saveData();
+                }
+            }
+
+            Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new DelayedReload(this.plugin), 5L);
         }
     }
 }

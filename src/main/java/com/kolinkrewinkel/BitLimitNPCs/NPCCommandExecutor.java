@@ -131,12 +131,17 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
 
         Player player = null;
 
-        if (sender instanceof Player)
+        Location toSpawnLocation = null;
+        if (sender instanceof Player) {
             player = (Player)sender;
+            toSpawnLocation = player.getLocation();
+        } else {
+            World firstWorld = Bukkit.getServer().getWorlds().get(0);
+            Location worldSpawn = firstWorld.getSpawnLocation();
+            toSpawnLocation = firstWorld.getHighestBlockAt(worldSpawn).getLocation();
+        }
 
-        World firstWorld = Bukkit.getServer().getWorlds().get(0);
-        Location spawnLocation = firstWorld.getSpawnLocation();
-        RemotePlayer entity = (RemotePlayer)this.plugin.manager.createNamedEntity(RemoteEntityType.Human, sender instanceof Player ? player.getLocation() : firstWorld.getHighestBlockAt(spawnLocation).getLocation(), ChatColor.ITALIC + args[1]);
+        RemotePlayer entity = (RemotePlayer)this.plugin.manager.createNamedEntity(RemoteEntityType.Human, toSpawnLocation, ChatColor.ITALIC + args[1]);
 
         entity.getMind().addMovementDesire(new DesireLookRandomly(entity), 1);
         entity.getMind().addMovementDesire(new DesireLookAtNearest(entity, EntityHuman.class, 16F, 1.0F), 2);

@@ -1,42 +1,20 @@
 package com.kolinkrewinkel.BitLimitNPCs;
 
-import com.google.common.base.Joiner;
-import de.kumpelblase2.remoteentities.persistence.EntityData;
+import net.minecraft.server.v1_5_R2.EntityHuman;
 import org.bukkit.*;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
-import de.kumpelblase2.remoteentities.*;
 import de.kumpelblase2.remoteentities.api.*;
-import de.kumpelblase2.remoteentities.api.features.*;
-import de.kumpelblase2.remoteentities.api.thinking.*;
 import de.kumpelblase2.remoteentities.api.thinking.goals.*;
-import org.bukkit.entity.Damageable;
 import de.kumpelblase2.remoteentities.entities.*;
 import org.bukkit.entity.LivingEntity;
-import net.minecraft.server.v1_4_R1.EntityHuman;
+import net.minecraft.server.v1_5_R2.EntityItemFrame;
 
-import org.bukkit.Material;
-import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.block.Block;
-import org.bukkit.util.*;
-import org.bukkit.entity.Item;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class NPCCommandExecutor implements CommandExecutor, Listener {
@@ -141,14 +119,19 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
             toSpawnLocation = firstWorld.getHighestBlockAt(worldSpawn).getLocation();
         }
 
-        RemotePlayer entity = (RemotePlayer)this.plugin.manager.createNamedEntity(RemoteEntityType.Human, toSpawnLocation, ChatColor.ITALIC + args[1]);
+        RemotePlayer entity = (RemotePlayer)this.plugin.manager.createNamedEntity(RemoteEntityType.Human, toSpawnLocation, ChatColor.ITALIC + args[1], true);
+//        RemoteZombie entity = (RemoteZombie)this.plugin.manager.createEntity(RemoteEntityType.Zombie, toSpawnLocation, false);
 
         entity.getMind().addMovementDesire(new DesireLookRandomly(entity), 1);
-        entity.getMind().addMovementDesire(new DesireLookAtNearest(entity, EntityHuman.class, 16F, 1.0F), 2);
-        entity.getMind().addBehaviour(new BlacksmithInteractBehavior(entity, this.plugin));
-        this.plugin.saveData();
+//        entity.getMind().addMovementDesire(new DesireLookAtNearest(entity, EntityHuman.class, 16F, 1.0F), 2);
+        entity.getMind().addBehaviour(new BlacksmithInteractBehavior(entity));
+        entity.save();
+        entity.getBukkitEntity().setRemoveWhenFarAway(false);
+//        this.plugin.manager.saveEntities();
 
-        Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.RESET + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
+        System.out.println(entity);
+
+//        Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.RESET + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
     }
 
     public void setEditingWithSender(boolean editing, CommandSender sender) {

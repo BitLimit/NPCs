@@ -20,9 +20,9 @@ import org.bukkit.util.Vector;
 public class BlacksmithInteractBehavior extends InteractBehavior {
     private Plugin plugin;
 
-    public BlacksmithInteractBehavior(RemoteEntity inEntity, Plugin inPlugin) {
+    public BlacksmithInteractBehavior(RemoteEntity inEntity) {
         super(inEntity);
-        this.plugin = inPlugin;
+        this.plugin = inEntity.getManager().getPlugin();
 
         this.onEntityUpdate();
     }
@@ -40,11 +40,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         axe.addEnchantment(Enchantment.SILK_TOUCH, 1);
         npc.setItemInHand(axe);
         npc.setRemoveWhenFarAway(false);
-    }
-
-    public BlacksmithInteractBehavior(ParameterData[] parameters)
-    {
-        this((RemoteEntity)parameters[0].value, (Plugin)parameters[1].value);
     }
 
     public void onInteract(Player inPlayer) {

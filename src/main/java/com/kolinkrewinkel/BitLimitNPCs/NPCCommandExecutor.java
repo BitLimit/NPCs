@@ -127,11 +127,11 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
         entity.getMind().addBehaviour(new BlacksmithInteractBehavior(entity));
         entity.save();
         entity.getBukkitEntity().setRemoveWhenFarAway(false);
-//        this.plugin.manager.saveEntities();
+        this.plugin.manager.saveEntities();
 
         System.out.println(entity);
 
-//        Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.RESET + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
+        Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.RESET + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
     }
 
     public void setEditingWithSender(boolean editing, CommandSender sender) {

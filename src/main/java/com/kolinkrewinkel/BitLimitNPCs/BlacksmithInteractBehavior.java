@@ -94,10 +94,19 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
 
         // Capture the NPC's location and grab the closest anvil.
         Location npcLocation = npc.getLocation();
-        Block closest = closestBlock(npcLocation, Material.ANVIL.getId());
+        Location closest = closestLocation(npcLocation, Material.ANVIL);
 
-        double distanceAway = npcLocation.distance(closest.getLocation());
-        behaviorEntity.move(closest.getLocation());
+        // Disable the NPC gazing around.
+        DesireLookRandomly desireLookRandomly = behaviorEntity.getMind().getMovementDesire(DesireLookRandomly.class);
+        desireLookRandomly.stopExecuting();
+
+        DesireLookAtNearest desireLookAtNearest = behaviorEntity.getMind().getMovementDesire(DesireLookAtNearest.class);
+        desireLookAtNearest.setLookPossibility(-1F);
+
+        Location destination = closest;
+        behaviorEntity.move(destination);
+        behaviorEntity.lookAt(destination);
+        double distanceAway = npcLocation.distance(destination);
 
         class FinishRepairTrip implements Runnable {
             private final Player npc;
@@ -111,11 +120,9 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
             }
 
             public void run() {
-                RemoteEntity entity = RemoteEntities.getRemoteEntityFromEntity(this.npc);
-                npc.setSneaking(true);
 
-                if (this.gaze != this.npc.getLocation())
-                    entity.lookAt(this.gaze);
+                if (!this.gaze.equals(this.npc.getLocation()))
+                    npc.setSneaking(true);
 
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                     public void run() {
@@ -123,12 +130,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
 
                         npc.getWorld().playSound(npc.getLocation(), Sound.ANVIL_USE, 1F, 1F);
                         RemoteEntity entity = RemoteEntities.getRemoteEntityFromEntity(npc);
-//
-//                        DesireLookAtNearest desireLookAtNearest = entity.getMind().getMovementDesire(DesireLookAtNearest.class);
-//                        DesireLookRandomly desireLookRandomly = entity.getMind().getMovementDesire(DesireLookRandomly.class);
-//
-//                        desireLookAtNearest.startExecuting();
-//                        desireLookRandomly.startExecuting();
+
                         entity.lookAt(toLookAt);
                     }
                 }, 20L);
@@ -136,7 +138,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         }
 
         Long wait = Math.round((distanceAway / 4) * 20);
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new FinishRepairTrip(npc, closest.getLocation(), inPlayer), wait);
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new FinishRepairTrip(npc, destination, inPlayer), wait);
 
         short zero = 0;
         repairItem.setDurability(zero);
@@ -178,7 +180,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
                     this.player.getInventory().setItem(this.player.getInventory().firstEmpty(), this.item);
                 } else {
                     Item droppedItem = npc.getLocation().getWorld().dropItem(npc.getLocation(), this.item);
-                    Location playerLoc = this.player.getLocation();
                     droppedItem.setVelocity(new Vector(0, 0, 0));
                 }
 
@@ -191,13 +192,20 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
                 ItemStack axe = new ItemStack(Material.DIAMOND_AXE);
                 axe.addEnchantment(Enchantment.SILK_TOUCH, 1);
                 npc.setItemInHand(axe);
+
+                RemoteEntity entity = RemoteEntities.getRemoteEntityFromEntity(this.npc);
+                DesireLookAtNearest desireLookAtNearest = entity.getMind().getMovementDesire(DesireLookAtNearest.class);
+                DesireLookRandomly desireLookRandomly = entity.getMind().getMovementDesire(DesireLookRandomly.class);
+
+                desireLookAtNearest.startExecuting();
+                desireLookRandomly.startExecuting();
             }
         }
 
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new ReturnItem(inPlayer, repairItem, npc, indexOfPreviouslyHeldItem), (wait * 2) + 20L);
     }
 
-    private Block closestBlock(Location origin, Material type) {
+    private Location closestLocation(Location origin, Material type) {
         World world = origin.getWorld();
 
         for (int x = origin.getBlockX() - 4; x <= origin.getBlockX() + 8; x = x + 1) {
@@ -205,11 +213,11 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
                 for (int y = origin.getBlockY() - 4; y <= origin.getBlockY() + 8; y = y + 1) {
                     Block block = world.getBlockAt(x, y, z);
                     if (block.getType().getId() == type.getId())
-                        return block;
+                        return block.getLocation();
                 }
             }
         }
 
-        return world.getBlockAt(origin);
+        return origin;
     }
 }

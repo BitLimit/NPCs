@@ -109,7 +109,7 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
 
         Player player = null;
 
-        Location toSpawnLocation = null;
+        Location toSpawnLocation;
         if (sender instanceof Player) {
             player = (Player)sender;
             toSpawnLocation = player.getLocation();
@@ -119,19 +119,18 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
             toSpawnLocation = firstWorld.getHighestBlockAt(worldSpawn).getLocation();
         }
 
+        // Create the NPC.
         RemotePlayer entity = (RemotePlayer)this.plugin.manager.createNamedEntity(RemoteEntityType.Human, toSpawnLocation, ChatColor.ITALIC + args[1] + ChatColor.RESET, true);
-//        RemoteZombie entity = (RemoteZombie)this.plugin.manager.createEntity(RemoteEntityType.Zombie, toSpawnLocation, false);
 
+        // Set up desires and behaviors (the fairy dust.)
         entity.getMind().addMovementDesire(new DesireLookRandomly(entity), 1);
-//        entity.getMind().addMovementDesire(new DesireLookAtNearest(entity, EntityHuman.class, 16F, 1.0F), 2);
+        entity.getMind().addMovementDesire(new DesireLookAtNearest(entity, EntityHuman.class, 16F, 1.0F), 2);
         entity.getMind().addBehaviour(new BlacksmithInteractBehavior(entity));
-        entity.save();
-        entity.getBukkitEntity().setRemoveWhenFarAway(false);
-        this.plugin.manager.saveEntities();
-
-        System.out.println(entity);
 
         Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
+
+        entity.save();
+        this.plugin.manager.saveEntities();
     }
 
     public void setEditingWithSender(boolean editing, CommandSender sender) {

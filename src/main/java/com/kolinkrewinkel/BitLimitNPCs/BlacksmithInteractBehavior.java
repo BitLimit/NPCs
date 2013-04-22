@@ -20,6 +20,8 @@ import org.bukkit.util.Vector;
 public class BlacksmithInteractBehavior extends InteractBehavior {
     private Plugin plugin;
 
+    private static Material defaultItem = Material.DIAMOND_AXE;
+
     public BlacksmithInteractBehavior(RemoteEntity inEntity) {
         super(inEntity);
         this.plugin = inEntity.getManager().getPlugin();
@@ -36,10 +38,28 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
 
         Player npc = (Player)this.m_entity.getBukkitEntity();
         npc.setCanPickupItems(false);
-        ItemStack axe = new ItemStack(Material.DIAMOND_AXE);
+        npc.setRemoveWhenFarAway(false);
+
+        // Set tools + armor
+
+        // Axe
+        ItemStack axe = new ItemStack(defaultItem);
         axe.addEnchantment(Enchantment.SILK_TOUCH, 1);
         npc.setItemInHand(axe);
-        npc.setRemoveWhenFarAway(false);
+
+        // Armor
+        ItemStack[] armor = new ItemStack[4];
+        armor[3] = new ItemStack(Material.LEATHER_HELMET);
+        armor[2] = new ItemStack(Material.LEATHER_CHESTPLATE);
+        armor[1] = new ItemStack(Material.IRON_LEGGINGS);
+        armor[0] = new ItemStack(Material.LEATHER_BOOTS);
+        // Set it backwards just for our own sanity.
+
+        for (ItemStack itemStack : armor) {
+            itemStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 10); // Give it that glowing feeling.
+        }
+
+        npc.getInventory().setArmorContents(armor); // Set it.
     }
 
     public void onInteract(Player inPlayer) {
@@ -49,7 +69,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
 
         ItemStack repairItem = inPlayer.getItemInHand();
 
-        if (npc.getItemInHand().getType().getId() != 279) {
+        if (npc.getItemInHand().getType().getId() != defaultItem.getId()) {
             inPlayer.sendMessage(ChatColor.AQUA + npc.getDisplayName() + ChatColor.RED + " is busy!");
             return;
         } else if (repairItem.getMaxStackSize() != 1) {

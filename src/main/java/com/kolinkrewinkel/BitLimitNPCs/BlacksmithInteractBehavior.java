@@ -197,10 +197,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new ReturnItem(inPlayer, repairItem, npc, indexOfPreviouslyHeldItem), (wait * 2) + 20L);
     }
 
-    private String capitalizedString(String string) {
-        return Character.toUpperCase(string.charAt(0)) + string.substring(1);
-    }
-
     private Block closestBlock(Location origin, Material type) {
         World world = origin.getWorld();
 

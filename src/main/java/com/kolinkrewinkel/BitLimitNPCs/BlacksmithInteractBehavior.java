@@ -54,9 +54,8 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         armor[0] = new ItemStack(Material.LEATHER_BOOTS);
         // Set it backwards just for our own sanity.
 
-        for (ItemStack itemStack : armor) {
+        for (ItemStack itemStack : armor)
             itemStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 10); // Give it that glowing feeling.
-        }
 
         npc.getInventory().setArmorContents(armor); // Set it.
     }
@@ -64,7 +63,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
     public void onInteract(Player inPlayer) {
         RemotePlayer behaviorEntity = (RemotePlayer) this.getRemoteEntity();
         Player npc = (Player) behaviorEntity.getBukkitEntity();
-        Location npcLocation = npc.getLocation();
+
 
         ItemStack repairItem = inPlayer.getItemInHand();
 
@@ -80,18 +79,21 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
             return;
         }
 
+        // Creative mode users will be using this as a utility.
         if (inPlayer.getGameMode() == GameMode.CREATIVE) {
             repairItem.setDurability((short)0);
-            return;
+            return; // Repair instantly and call it a day.
         }
 
+        // Record where the player had the item for their convenience.
+        int indexOfPreviouslyHeldItem = inPlayer.getInventory().getHeldItemSlot();
+
+        // Take the item from the player and put it in the NPC's hand.
+        inPlayer.setItemInHand(new ItemStack(Material.AIR));
         npc.setItemInHand(repairItem);
 
-        int indexOfPreviouslyHeldItem = inPlayer.getInventory().getHeldItemSlot();
-        inPlayer.setItemInHand(new ItemStack(Material.AIR));
-        //Update the equipment on the entity.
-
-
+        // Capture the NPC's location and grab the closest anvil.
+        Location npcLocation = npc.getLocation();
         Block closest = closestBlock(npcLocation, Material.ANVIL.getId());
 
         double distanceAway = npcLocation.distance(closest.getLocation());
@@ -199,16 +201,15 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         return Character.toUpperCase(string.charAt(0)) + string.substring(1);
     }
 
-    private Block closestBlock(Location origin, Integer type) {
+    private Block closestBlock(Location origin, Material type) {
         World world = origin.getWorld();
 
         for (int x = origin.getBlockX() - 4; x <= origin.getBlockX() + 8; x = x + 1) {
             for (int z = origin.getBlockZ() - 4; z <= origin.getBlockZ() + 8; z = z + 1) {
                 for (int y = origin.getBlockY() - 4; y <= origin.getBlockY() + 8; y = y + 1) {
                     Block block = world.getBlockAt(x, y, z);
-                    if (block.getType() == Material.ANVIL) {
+                    if (block.getType().getId() == type.getId())
                         return block;
-                    }
                 }
             }
         }

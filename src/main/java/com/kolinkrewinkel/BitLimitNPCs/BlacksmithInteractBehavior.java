@@ -40,8 +40,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         npc.setCanPickupItems(false);
         npc.setRemoveWhenFarAway(false);
 
-        // Set tools + armor
-
+        // Set tools and armor.
         // Axe
         ItemStack axe = new ItemStack(defaultItem);
         axe.addEnchantment(Enchantment.SILK_TOUCH, 1);
@@ -73,6 +72,8 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
             inPlayer.sendMessage(ChatColor.AQUA + npc.getDisplayName() + ChatColor.RED + " is busy!");
             return;
         } else if (repairItem.getMaxStackSize() != 1) {
+            return;
+        } else if (repairItem.getType().getId() == Material.POTION.getId()) {
             return;
         } else if (repairItem.getDurability() == 0) {
             inPlayer.sendMessage(ChatColor.RED + "Your item is fully repaired.");
@@ -175,7 +176,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
                     droppedItem.setVelocity(new Vector(0, 0, 0));
                 }
 
-
                 if (item.getItemMeta().hasDisplayName()) {
                     this.player.sendMessage(ChatColor.AQUA + this.npc.getDisplayName() + ChatColor.GREEN + " repaired " + ChatColor.YELLOW + item.getItemMeta().getDisplayName() + ChatColor.GREEN + ".");
                 } else {
@@ -210,14 +210,5 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         }
 
         return world.getBlockAt(origin);
-    }
-
-    public Object[] getConstructionals()
-    {
-        Object[] constructionals = new Object[2];
-        constructionals[0] = this.m_entity;
-        constructionals[1] = this.plugin;
-
-        return constructionals;
     }
 }

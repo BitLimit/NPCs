@@ -76,10 +76,9 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         } else if (repairItem.getType().getId() == Material.POTION.getId()) {
             return;
         } else if (repairItem.getDurability() == 0) {
-            inPlayer.sendMessage(ChatColor.RED + "Your item is fully repaired.");
+            inPlayer.sendMessage(ChatColor.RED + "Item is fully repaired.");
             return;
         }
-
 
         npc.setItemInHand(repairItem);
 

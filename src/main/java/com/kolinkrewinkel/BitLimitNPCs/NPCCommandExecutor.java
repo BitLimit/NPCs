@@ -119,7 +119,7 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
             toSpawnLocation = firstWorld.getHighestBlockAt(worldSpawn).getLocation();
         }
 
-        RemotePlayer entity = (RemotePlayer)this.plugin.manager.createNamedEntity(RemoteEntityType.Human, toSpawnLocation, ChatColor.ITALIC + args[1], true);
+        RemotePlayer entity = (RemotePlayer)this.plugin.manager.createNamedEntity(RemoteEntityType.Human, toSpawnLocation, ChatColor.ITALIC + args[1] + ChatColor.RESET, true);
 //        RemoteZombie entity = (RemoteZombie)this.plugin.manager.createEntity(RemoteEntityType.Zombie, toSpawnLocation, false);
 
         entity.getMind().addMovementDesire(new DesireLookRandomly(entity), 1);
@@ -131,7 +131,7 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
 
         System.out.println(entity);
 
-        Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.RESET + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
+        Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
     }
 
     public void setEditingWithSender(boolean editing, CommandSender sender) {

@@ -80,6 +80,11 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
             return;
         }
 
+        if (inPlayer.getGameMode() == GameMode.CREATIVE) {
+            repairItem.setDurability((short)0);
+            return;
+        }
+
         npc.setItemInHand(repairItem);
 
         int indexOfPreviouslyHeldItem = inPlayer.getInventory().getHeldItemSlot();

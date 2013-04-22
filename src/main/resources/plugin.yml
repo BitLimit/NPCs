@@ -2,8 +2,8 @@ main: com.kolinkrewinkel.BitLimitNPCs.BitLimitNPCs
 name: BitLimitNPCs
 version: ${project.version}
 author: Kolin Krewinkel
-description: NYI
-website: http://github.com/kolinkrewinkel/BitLimitNPCs/
+description: Non-playing characters for specific use cases on the BitLimit Private Survival server. Currently only includes item-repairing blacksmiths.
+website: https://github.com/kolinkrewinkel/BitLimitNPCs/
 commands:
     npc:
         description: Undefined

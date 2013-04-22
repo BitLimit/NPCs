@@ -1,21 +1,16 @@
 package com.kolinkrewinkel.BitLimitNPCs;
 
-import de.kumpelblase2.remoteentities.RemoteEntities;
-import de.kumpelblase2.remoteentities.api.RemoteEntity;
-import de.kumpelblase2.remoteentities.api.thinking.Behavior;
 import de.kumpelblase2.remoteentities.api.thinking.InteractBehavior;
-import de.kumpelblase2.remoteentities.api.thinking.goals.DesireLookAtNearest;
-import de.kumpelblase2.remoteentities.api.thinking.goals.DesireLookRandomly;
 import de.kumpelblase2.remoteentities.entities.RemotePlayer;
-import de.kumpelblase2.remoteentities.persistence.ParameterData;
-import org.bukkit.*;
-import org.bukkit.block.Block;
+import de.kumpelblase2.remoteentities.api.thinking.goals.*;
+import de.kumpelblase2.remoteentities.api.RemoteEntity;
+import de.kumpelblase2.remoteentities.RemoteEntities;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.util.Vector;
+import org.bukkit.block.Block;
+import org.bukkit.*;
 
 public class BlacksmithInteractBehavior extends InteractBehavior {
     private Plugin plugin;
@@ -41,7 +36,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         npc.setRemoveWhenFarAway(false);
 
         // Set tools and armor.
-        // Axe
         ItemStack axe = new ItemStack(defaultItem);
         axe.addEnchantment(Enchantment.SILK_TOUCH, 1);
         npc.setItemInHand(axe);

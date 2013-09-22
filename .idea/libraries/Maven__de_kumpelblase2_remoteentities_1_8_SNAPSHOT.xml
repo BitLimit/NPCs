@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Maven: de.kumpelblase2:remoteentities:1.8-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Remote-Entities/target/Remote-Entities.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

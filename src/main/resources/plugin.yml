@@ -1,9 +1,9 @@
-main: com.kolinkrewinkel.BitLimitNPCs.BitLimitNPCs
-name: BitLimitNPCs
+main: com.bitlimit.NPCs.NPCs
+name: NPCs
 version: ${project.version}
 author: Kolin Krewinkel
-description: Non-playing characters for specific use cases on the BitLimit Private Survival server. Currently only includes item-repairing blacksmiths.
-website: https://github.com/kolinkrewinkel/BitLimitNPCs/
+description: Non-playing characters.
+website: https://github.com/BitLimit/NPCs/
 commands:
     npc:
         description: Undefined

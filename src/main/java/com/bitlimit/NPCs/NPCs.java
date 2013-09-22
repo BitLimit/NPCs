@@ -1,17 +1,13 @@
-package com.kolinkrewinkel.BitLimitNPCs;
+package com.bitlimit.NPCs;
 
 import de.kumpelblase2.remoteentities.EntityManager;
 import de.kumpelblase2.remoteentities.RemoteEntities;
-import de.kumpelblase2.remoteentities.api.RemoteEntity;
-import de.kumpelblase2.remoteentities.api.RemoteEntityType;
-import de.kumpelblase2.remoteentities.persistence.EntityData;
-import de.kumpelblase2.remoteentities.persistence.IEntitySerializer;
 import de.kumpelblase2.remoteentities.persistence.serializers.JSONSerializer;
 import de.kumpelblase2.remoteentities.persistence.serializers.YMLSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class BitLimitNPCs extends JavaPlugin {
+public class NPCs extends JavaPlugin {
     public EntityManager manager;
     public NPCCommandExecutor commandExecutor;
 

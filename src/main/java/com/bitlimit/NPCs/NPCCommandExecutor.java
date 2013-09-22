@@ -1,6 +1,6 @@
-package com.kolinkrewinkel.BitLimitNPCs;
+package com.bitlimit.NPCs;
 
-import net.minecraft.server.v1_5_R2.EntityHuman;
+import net.minecraft.server.v1_6_R3.EntityHuman;
 import org.bukkit.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
@@ -17,7 +17,7 @@ import org.bukkit.event.Listener;
 import java.util.HashMap;
 
 public class NPCCommandExecutor implements CommandExecutor, Listener {
-    private final BitLimitNPCs plugin;
+    private final NPCs plugin;
     public boolean editing = false;
     private HashMap<RemoteEntity, String> NPCNames = new HashMap<RemoteEntity, String>();
 
@@ -32,7 +32,7 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
         }
     }
 
-    public NPCCommandExecutor(BitLimitNPCs plugin) {
+    public NPCCommandExecutor(NPCs plugin) {
         this.plugin = plugin;
 
         Bukkit.getPluginManager().registerEvents(this, this.plugin);
@@ -122,8 +122,8 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
         RemotePlayer entity = (RemotePlayer)this.plugin.manager.createNamedEntity(RemoteEntityType.Human, toSpawnLocation, ChatColor.ITALIC + args[1] + ChatColor.RESET, true);
 
         // Set up desires and behaviors (the fairy dust.)
-        entity.getMind().addMovementDesire(new DesireLookRandomly(entity), 1);
-        entity.getMind().addMovementDesire(new DesireLookAtNearest(entity, EntityHuman.class, 16F, 1.0F), 2);
+        entity.getMind().addMovementDesire(new DesireLookRandomly(), 1);
+        entity.getMind().addMovementDesire(new DesireLookAtNearest(EntityHuman.class, 16F, 1.0F), 2);
         entity.getMind().addBehaviour(new BlacksmithInteractBehavior(entity));
 
         Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
@@ -167,9 +167,9 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
             this.NPCNames.clear();
 
             class DelayedReload implements Runnable {
-                private BitLimitNPCs plugin;
+                private NPCs plugin;
 
-                DelayedReload(BitLimitNPCs plugin) {
+                DelayedReload(NPCs plugin) {
                     this.plugin = plugin;
                 }
 

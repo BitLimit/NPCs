@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="NPCs">
+    <output-path>$PROJECT_DIR$/../Testing Server/plugins</output-path>
+    <root id="archive" name="NPCs.jar">
+      <element id="module-output" name="BitLimitNPCs" />
+      <element id="file-copy" path="$PROJECT_DIR$/pom.xml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.yml" />
+    </root>
+  </artifact>
+</component>

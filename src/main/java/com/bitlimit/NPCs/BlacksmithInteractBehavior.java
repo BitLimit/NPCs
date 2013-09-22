@@ -1,4 +1,4 @@
-package com.kolinkrewinkel.BitLimitNPCs;
+package com.bitlimit.NPCs;
 
 import de.kumpelblase2.remoteentities.api.thinking.InteractBehavior;
 import de.kumpelblase2.remoteentities.entities.RemotePlayer;
@@ -6,13 +6,16 @@ import de.kumpelblase2.remoteentities.api.thinking.goals.*;
 import de.kumpelblase2.remoteentities.api.RemoteEntity;
 import de.kumpelblase2.remoteentities.RemoteEntities;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.block.Block;
 import org.bukkit.*;
 
-public class BlacksmithInteractBehavior extends InteractBehavior {
+public class BlacksmithInteractBehavior extends InteractBehavior implements Listener {
     private Plugin plugin;
 
     private static Material defaultItem = Material.DIAMOND_AXE;
@@ -20,6 +23,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
     public BlacksmithInteractBehavior(RemoteEntity inEntity) {
         super(inEntity);
         this.plugin = inEntity.getManager().getPlugin();
+        this.plugin.getServer().getPluginManager().registerEvents(this, this.plugin);
 
         this.onEntityUpdate();
     }
@@ -55,18 +59,28 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
     }
 
     public void onInteract(Player inPlayer) {
-        RemotePlayer behaviorEntity = (RemotePlayer) this.getRemoteEntity();
-        Player npc = (Player) behaviorEntity.getBukkitEntity();
 
+    }
+
+    @EventHandler
+    public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
+        Player inPlayer = event.getPlayer();
+        RemotePlayer behaviorEntity = (RemotePlayer) this.getRemoteEntity();
+
+        if (!event.getRightClicked().equals(behaviorEntity.getBukkitEntity())) {
+            return;
+        }
+
+        Player npc = (Player) behaviorEntity.getBukkitEntity();
 
         ItemStack repairItem = inPlayer.getItemInHand();
 
-        if (npc.getItemInHand().getType().getId() != defaultItem.getId()) {
+        if (npc.getItemInHand().getType() != defaultItem) {
             inPlayer.sendMessage(ChatColor.AQUA + npc.getDisplayName() + ChatColor.RED + " is busy!");
             return;
         } else if (repairItem.getMaxStackSize() != 1) {
             return;
-        } else if (repairItem.getType().getId() == Material.POTION.getId()) {
+        } else if (repairItem.getType() == Material.POTION) {
             return;
         } else if (repairItem.getDurability() == 0) {
             inPlayer.sendMessage(ChatColor.RED + "Item is fully repaired.");
@@ -95,7 +109,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         desireLookRandomly.stopExecuting();
 
         DesireLookAtNearest desireLookAtNearest = behaviorEntity.getMind().getMovementDesire(DesireLookAtNearest.class);
-        desireLookAtNearest.setLookPossibility(-1F);
+//        desireLookAtNearest.setLookPossibility(-1F);
 
         behaviorEntity.move(destination);
         behaviorEntity.lookAt(destination);
@@ -197,7 +211,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
                 DesireLookAtNearest desireLookAtNearest = entity.getMind().getMovementDesire(DesireLookAtNearest.class);
                 DesireLookRandomly desireLookRandomly = entity.getMind().getMovementDesire(DesireLookRandomly.class);
 
-                desireLookAtNearest.setLookPossibility(1.0F);
+//                desireLookAtNearest.setLookPossibility(1.0F);
                 desireLookRandomly.startExecuting();
             }
         }
@@ -213,7 +227,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
             for (int z = origin.getBlockZ() - 4; z <= origin.getBlockZ() + 8; z = z + 1) {
                 for (int y = origin.getBlockY() - 4; y <= origin.getBlockY() + 8; y = y + 1) {
                     Block block = world.getBlockAt(x, y, z);
-                    if (block.getType().getId() == type.getId())
+                    if (block.getType() == type)
                         return block.getLocation();
                 }
             }

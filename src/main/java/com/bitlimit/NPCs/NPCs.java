@@ -50,9 +50,6 @@ public class NPCs extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        if (this.commandExecutor.editing)
-            this.commandExecutor.setEditingWithSender(false, Bukkit.getConsoleSender());
-
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
     }

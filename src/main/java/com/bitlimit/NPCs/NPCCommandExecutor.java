@@ -1,5 +1,6 @@
 package com.bitlimit.NPCs;
 
+import de.kumpelblase2.remoteentities.RemoteEntities;
 import net.minecraft.server.v1_6_R3.EntityHuman;
 import org.bukkit.*;
 import org.bukkit.command.*;
@@ -18,24 +19,10 @@ import java.util.HashMap;
 
 public class NPCCommandExecutor implements CommandExecutor, Listener {
     private final NPCs plugin;
-    public boolean editing = false;
     private HashMap<RemoteEntity, String> NPCNames = new HashMap<RemoteEntity, String>();
-
-    @EventHandler
-    public void onDamageEvent(EntityDamageEvent event) {
-
-        if (!(event.getEntity() instanceof LivingEntity))
-            return;
-
-        if (plugin.manager.isRemoteEntity((LivingEntity)event.getEntity())) {
-            event.setCancelled(true);
-        }
-    }
 
     public NPCCommandExecutor(NPCs plugin) {
         this.plugin = plugin;
-
-        Bukkit.getPluginManager().registerEvents(this, this.plugin);
     }
     
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -45,10 +32,6 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
         }
 
         if (args[0].toLowerCase().equals("create") && sender.hasPermission("npc.create")) {
-            if (this.editing) {
-                sender.sendMessage(ChatColor.RED + "Creation is not allowed during pruning.");
-                return false;
-            }
 
             if (args.length < 2) {
                 sender.sendMessage(ChatColor.RED + "Name required.");
@@ -61,16 +44,10 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
                 e.printStackTrace();
             }
             return true;
-        } else if (args[0].toLowerCase().equals("prune") && sender.hasPermission("npc.prune"))
-            this.setEditingWithSender(!this.editing, sender);
+        }
         else if (args[0].toLowerCase().equals("remove") && sender.hasPermission("npc.remove")) {
             if (args.length < 2) {
                 sender.sendMessage(ChatColor.RED + "Entity ID required.");
-                return false;
-            }
-
-            if (!this.editing) {
-                sender.sendMessage(ChatColor.RED + "Pruning mode must be enabled.");
                 return false;
             }
 
@@ -80,7 +57,7 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
             this.NPCNames.remove(entity);
             this.plugin.manager.removeEntity(ID, true);
 
-            this.setEditingWithSender(true, sender);
+            sender.sendMessage(ChatColor.GREEN + "Entity of ID \"" + ID + "\" removed.");
         } else
             sender.sendMessage(ChatColor.RED + "You don't have permission to execute this command.");
 
@@ -125,6 +102,7 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
         entity.getMind().addMovementDesire(new DesireLookRandomly(), 1);
         entity.getMind().addMovementDesire(new DesireLookAtNearest(EntityHuman.class, 16F, 1.0F), 2);
         entity.getMind().addBehaviour(new BlacksmithInteractBehavior(entity));
+        entity.getMind().blockFeelings(false);
 
         Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
 
@@ -132,53 +110,5 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
         this.plugin.manager.saveEntities();
     }
 
-    public void setEditingWithSender(boolean editing, CommandSender sender) {
 
-        boolean wasEditing = this.editing;
-        this.editing = editing;
-        if (this.editing) {
-            if (!wasEditing)
-                Bukkit.broadcastMessage(ChatColor.WHITE + "<" + sender.getName() + "> " + ChatColor.YELLOW + "NPC pruning started…");
-
-            for (RemoteEntity entity : this.plugin.manager.getAllEntities()) {
-                if (entity instanceof RemotePlayer) {
-                    RemotePlayer player = (RemotePlayer)entity;
-
-                    if (!NPCNames.containsKey(entity))
-                        NPCNames.put(entity, player.getName());
-
-                    player.setName(Integer.toString(player.getID()));
-                }
-            }
-        } else {
-
-            Bukkit.broadcastMessage(ChatColor.WHITE + "<" + sender.getName() + "> " + ChatColor.GREEN + "NPC pruning completed.");
-
-            for (RemoteEntity entity : this.plugin.manager.getAllEntities()) {
-                if (entity instanceof RemotePlayer) {
-                    String name = this.NPCNames.get(entity);
-                    if (name == null)
-                        continue;
-
-                    ((RemotePlayer) entity).setName(name);
-                }
-            }
-
-            this.NPCNames.clear();
-
-            class DelayedReload implements Runnable {
-                private NPCs plugin;
-
-                DelayedReload(NPCs plugin) {
-                    this.plugin = plugin;
-                }
-
-                public void run() {
-                    this.plugin.saveData();
-                }
-            }
-
-            Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new DelayedReload(this.plugin), 5L);
-        }
-    }
 }

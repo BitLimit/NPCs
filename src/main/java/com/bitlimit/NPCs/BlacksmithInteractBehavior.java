@@ -1,5 +1,7 @@
 package com.bitlimit.NPCs;
 
+import de.kumpelblase2.remoteentities.api.thinking.BaseBehavior;
+import de.kumpelblase2.remoteentities.api.thinking.DesireType;
 import de.kumpelblase2.remoteentities.api.thinking.InteractBehavior;
 import de.kumpelblase2.remoteentities.entities.RemotePlayer;
 import de.kumpelblase2.remoteentities.api.thinking.goals.*;
@@ -41,7 +43,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior implements List
 
         // Set tools and armor.
         ItemStack axe = new ItemStack(defaultItem);
-        axe.addEnchantment(Enchantment.SILK_TOUCH, 1);
+        axe.addUnsafeEnchantment(Enchantment.SILK_TOUCH, 10);
         npc.setItemInHand(axe);
 
         // Armor
@@ -56,10 +58,13 @@ public class BlacksmithInteractBehavior extends InteractBehavior implements List
             itemStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 10); // Give it that glowing feeling.
 
         npc.getInventory().setArmorContents(armor); // Set it.
+
+        this.m_entity.setStationary(false, false);
     }
 
     public void onInteract(Player inPlayer) {
-
+        ((RemotePlayer)this.getRemoteEntity()).fakeDamage();
+        ((RemotePlayer)this.getRemoteEntity()).doArmSwing() ;
     }
 
     @EventHandler
@@ -73,23 +78,44 @@ public class BlacksmithInteractBehavior extends InteractBehavior implements List
 
         Player npc = (Player) behaviorEntity.getBukkitEntity();
 
-        ItemStack repairItem = inPlayer.getItemInHand();
+        ItemStack actionItem = inPlayer.getItemInHand();
+        
+        if (actionItem.getType() == Material.NAME_TAG) {
+            if (actionItem.getItemMeta().hasDisplayName()) {
+
+                behaviorEntity.setName(ChatColor.ITALIC + actionItem.getItemMeta().getDisplayName());
+                behaviorEntity.getManager().saveEntities();
+
+                behaviorEntity.getManager().despawnAll();
+                behaviorEntity.getManager().getAllEntities().clear();
+                behaviorEntity.getManager().loadEntities();
+
+                inPlayer.sendMessage(ChatColor.GREEN + "Rename successful.");
+
+                return;
+            }
+            else
+            {
+                inPlayer.sendMessage(ChatColor.GOLD + "This entity's ID is \"" + behaviorEntity.getID() + "\"");
+                return;
+            }
+        }
 
         if (npc.getItemInHand().getType() != defaultItem) {
             inPlayer.sendMessage(ChatColor.AQUA + npc.getDisplayName() + ChatColor.RED + " is busy!");
             return;
-        } else if (repairItem.getMaxStackSize() != 1) {
+        } else if (actionItem.getMaxStackSize() != 1) {
             return;
-        } else if (repairItem.getType() == Material.POTION) {
+        } else if (actionItem.getType() == Material.POTION) {
             return;
-        } else if (repairItem.getDurability() == 0) {
+        } else if (actionItem.getDurability() == 0) {
             inPlayer.sendMessage(ChatColor.RED + "Item is fully repaired.");
             return;
         }
 
         // Creative mode users will be using this as a utility.
         if (inPlayer.getGameMode() == GameMode.CREATIVE) {
-            repairItem.setDurability((short)0);
+            actionItem.setDurability((short)0);
             return; // Repair instantly and call it a day.
         }
 
@@ -98,7 +124,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior implements List
 
         // Take the item from the player and put it in the NPC's hand.
         inPlayer.setItemInHand(new ItemStack(Material.AIR));
-        npc.setItemInHand(repairItem);
+        npc.setItemInHand(actionItem);
 
         // Capture the NPC's location and grab the closest anvil.
         Location npcLocation = npc.getLocation();
@@ -109,10 +135,10 @@ public class BlacksmithInteractBehavior extends InteractBehavior implements List
         desireLookRandomly.stopExecuting();
 
         DesireLookAtNearest desireLookAtNearest = behaviorEntity.getMind().getMovementDesire(DesireLookAtNearest.class);
-//        desireLookAtNearest.setLookPossibility(-1F);
 
-        behaviorEntity.move(destination);
+        behaviorEntity.getMind().addMovementDesire(new DesireMoveToLocation(destination), 5);
         behaviorEntity.lookAt(destination);
+
         double distanceAway = npcLocation.distance(destination);
 
         class FinishRepairTrip implements Runnable {
@@ -142,7 +168,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior implements List
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new FinishRepairTrip(npc, destination), wait);
 
         // Actually repair the item.
-        repairItem.setDurability((short)0);
+        actionItem.setDurability((short) 0);
 
         class ReturnNPC implements Runnable {
             private final Location returnLocation;
@@ -157,7 +183,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior implements List
 
             public void run() {
                 // Walk the NPC back to its original location.
-                this.entity.move(this.returnLocation);
+                this.entity.getMind().addMovementDesire(new DesireMoveToLocation(this.returnLocation), 5);
 
                 // Turn back to the player to correspond with te walking.
                 entity.lookAt(this.toLookAt);
@@ -216,7 +242,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior implements List
             }
         }
 
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new ReturnItem(inPlayer, repairItem, npc, indexOfPreviouslyHeldItem), (wait * 2) + 20L);
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new ReturnItem(inPlayer, actionItem, npc, indexOfPreviouslyHeldItem), (wait * 2) + 20L);
     }
 
     // Grab the nearest location of a block with a certain material/type.

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3101b656-42d2-4ba0-a515-75322b3a125b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" afterPath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" afterPath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="BitLimitNPCs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,7 +40,7 @@
     <file path="/BlacksmithInteractBehavior.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379897057431" ignored="false" />
     <file path="/plugin.yml" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379830158491" ignored="false" />
     <file path="/YMLSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379893590247" ignored="false" />
-    <file path="/NPCs.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379896991584" ignored="false" />
+    <file path="/NPCs.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379898103805" ignored="false" />
     <file path="/PreparationSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379831652038" ignored="false" />
     <file path="/EntityData.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379832713651" ignored="false" />
     <file path="/BehaviorData.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379834902418" ignored="false" />
@@ -112,7 +112,7 @@
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="34" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.0">
+            <state line="9" column="16" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -140,10 +140,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlacksmithInteractBehavior.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="BlacksmithInteractBehavior.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="66" selection-start="2553" selection-end="2553" vertical-scroll-proportion="0.6601467">
+            <state line="26" column="26" selection-start="1099" selection-end="1099" vertical-scroll-proportion="-5.769231">
               <folding>
                 <element signature="e#5730#6016#0" expanded="true" />
                 <element signature="e#5997#5998#0" expanded="true" />
@@ -152,10 +152,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NPCs.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="NPCs.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="5" selection-start="4440" selection-end="4440" vertical-scroll-proportion="0.0">
+            <state line="58" column="78" selection-start="1891" selection-end="1891" vertical-scroll-proportion="0.49052134">
               <folding />
             </state>
           </provider>
@@ -182,10 +182,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kolinkrewinkel/BitLimitNPCs/NPCCommandExecutor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kolinkrewinkel/BitLimitNPCs/BitLimitNPCs.java" />
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" />
       </list>
     </option>
   </component>
@@ -276,6 +276,54 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NPCs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NPCs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NPCs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NPCs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NPCs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -590,13 +638,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="34" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../Remote-Entities/target/Remote-Entities.jar!/de/kumpelblase2/remoteentities/api/thinking/Mind.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="19" selection-start="1214" selection-end="1214" vertical-scroll-proportion="0.3423729">
@@ -622,20 +663,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="5" selection-start="4440" selection-end="4440" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="66" selection-start="2553" selection-end="2553" vertical-scroll-proportion="0.6601467">
+        <state line="26" column="26" selection-start="1099" selection-end="1099" vertical-scroll-proportion="-5.769231">
           <folding>
             <element signature="e#5730#6016#0" expanded="true" />
             <element signature="e#5997#5998#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="16" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="78" selection-start="1891" selection-end="1891" vertical-scroll-proportion="0.49052134">
+          <folding />
         </state>
       </provider>
     </entry>

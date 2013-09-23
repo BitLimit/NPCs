@@ -7,7 +7,7 @@
 
   <groupId>com.bitlimit.NPCs</groupId>
   <artifactId>NPCs</artifactId>
-  <version>0.6.0</version>
+  <version>0.6.1</version>
   <name>NPCs</name>
   <description>Non-playing characters.</description>
 

@@ -10,6 +10,7 @@ import de.kumpelblase2.remoteentities.RemoteEntities;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.entity.Player;
@@ -17,17 +18,20 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.block.Block;
 import org.bukkit.*;
 
-public class BlacksmithInteractBehavior extends InteractBehavior implements Listener {
-    private Plugin plugin;
-
+public class BlacksmithInteractBehavior extends InteractBehavior {
     private static Material defaultItem = Material.DIAMOND_AXE;
+    private final Plugin plugin;
 
     public BlacksmithInteractBehavior(RemoteEntity inEntity) {
         super(inEntity);
+
         this.plugin = inEntity.getManager().getPlugin();
-        this.plugin.getServer().getPluginManager().registerEvents(this, this.plugin);
 
         this.onEntityUpdate();
+    }
+
+    public void onInteract(Player player) {
+
     }
 
     public void onEntityUpdate()
@@ -36,6 +40,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior implements List
             return;
 
         this.m_entity.setPushable(false);
+        this.m_entity.setStationary(false);
 
         Player npc = (Player)this.m_entity.getBukkitEntity();
         npc.setCanPickupItems(false);
@@ -59,27 +64,14 @@ public class BlacksmithInteractBehavior extends InteractBehavior implements List
 
         npc.getInventory().setArmorContents(armor); // Set it.
 
-        this.m_entity.setStationary(false, false);
     }
 
-    public void onInteract(Player inPlayer) {
-        ((RemotePlayer)this.getRemoteEntity()).fakeDamage();
-        ((RemotePlayer)this.getRemoteEntity()).doArmSwing() ;
-    }
-
-    @EventHandler
-    public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
-        Player inPlayer = event.getPlayer();
+    public void onRightClickInteract(Player inPlayer) {
         RemotePlayer behaviorEntity = (RemotePlayer) this.getRemoteEntity();
-
-        if (!event.getRightClicked().equals(behaviorEntity.getBukkitEntity())) {
-            return;
-        }
-
         Player npc = (Player) behaviorEntity.getBukkitEntity();
 
         ItemStack actionItem = inPlayer.getItemInHand();
-        
+
         if (actionItem.getType() == Material.NAME_TAG) {
             if (actionItem.getItemMeta().hasDisplayName()) {
 

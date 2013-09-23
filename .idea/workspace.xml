@@ -3,16 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="3101b656-42d2-4ba0-a515-75322b3a125b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" afterPath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java" afterPath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" afterPath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BitLimitNPCs.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379880447836" ignored="false" />
     <file path="/pom.xml" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379825069737" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/ChunkEntityLoader.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827659170" ignored="false" />
-    <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/persistence/serializers/YMLSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379886656711" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/persistence/serializers/YMLSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379893596122" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/pom.xml" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827659170" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/examples/Persistence/ExampleMain.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379823980913" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/persistence/serializers/PreparationSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379886740073" ignored="false" />
@@ -32,17 +30,17 @@
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/api/RemoteEntityType.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827659170" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/api/events/BaseEvent.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827659170" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/persistence/IEntitySerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827659170" ignored="false" />
-    <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/persistence/BehaviorData.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379886713535" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/persistence/BehaviorData.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379888836656" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/api/thinking/goals/DesireLookRandomly.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829050107" ignored="false" />
     <file path="/DesireLookAtNearest.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829004492" ignored="false" />
     <file path="/DesireLookRandomly.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829048440" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/api/pathfinding/checkers/DoorOpenChecker.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829146342" ignored="false" />
     <file path="/DoorOpenChecker.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829121553" ignored="false" />
     <file path="/BitLimitNPCs.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829375657" ignored="false" />
-    <file path="/BlacksmithInteractBehavior.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379887959079" ignored="false" />
+    <file path="/BlacksmithInteractBehavior.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379897057431" ignored="false" />
     <file path="/plugin.yml" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379830158491" ignored="false" />
-    <file path="/YMLSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379886067128" ignored="false" />
-    <file path="/NPCs.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379830967817" ignored="false" />
+    <file path="/YMLSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379893590247" ignored="false" />
+    <file path="/NPCs.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379896991584" ignored="false" />
     <file path="/PreparationSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379831652038" ignored="false" />
     <file path="/EntityData.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379832713651" ignored="false" />
     <file path="/BehaviorData.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379834902418" ignored="false" />
@@ -50,7 +48,8 @@
     <file path="/RemotePlayer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379884714515" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/entities/RemoteBaseEntity.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379882492435" ignored="false" />
     <file path="/RemoteBaseEntity.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379882492435" ignored="false" />
-    <file path="/a.dummy" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379888744878" ignored="false" />
+    <file path="/a.dummy" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379888784735" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/utilities/ReflectionUtil.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379888842177" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,8 +143,11 @@
       <file leaf-file-name="BlacksmithInteractBehavior.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="155" column="96" selection-start="6026" selection-end="6026" vertical-scroll-proportion="0.5533822">
-              <folding />
+            <state line="70" column="66" selection-start="2553" selection-end="2553" vertical-scroll-proportion="0.6601467">
+              <folding>
+                <element signature="e#5730#6016#0" expanded="true" />
+                <element signature="e#5997#5998#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -153,7 +155,7 @@
       <file leaf-file-name="NPCs.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="29" selection-start="2215" selection-end="2215" vertical-scroll-proportion="0.0">
+            <state line="114" column="5" selection-start="4440" selection-end="4440" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -181,8 +183,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kolinkrewinkel/BitLimitNPCs/BitLimitNPCs.java" />
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" />
       </list>
     </option>
@@ -451,13 +453,13 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45415777" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45363215" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24959481" sideWeight="0.67001545" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24959481" sideWeight="0.5463678" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -553,7 +555,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="73" column="63" selection-start="2616" selection-end="2616" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <element signature="e#5730#6016#0" expanded="true" />
+            <element signature="e#5997#5998#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -606,13 +611,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="29" selection-start="2215" selection-end="2215" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="59" column="71" selection-start="2064" selection-end="2064" vertical-scroll-proportion="0.0">
@@ -624,10 +622,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="5" selection-start="4440" selection-end="4440" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="96" selection-start="6026" selection-end="6026" vertical-scroll-proportion="0.5533822">
-          <folding />
+        <state line="70" column="66" selection-start="2553" selection-end="2553" vertical-scroll-proportion="0.6601467">
+          <folding>
+            <element signature="e#5730#6016#0" expanded="true" />
+            <element signature="e#5997#5998#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

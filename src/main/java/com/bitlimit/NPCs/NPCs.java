@@ -88,6 +88,7 @@ public class NPCs extends JavaPlugin implements Listener {
             InteractBehavior interactBehavior = (InteractBehavior)remoteEntity.getMind().getBehaviour("Interact");
             if (interactBehavior instanceof BlacksmithInteractBehavior) {
                 ((BlacksmithInteractBehavior)interactBehavior).onRightClickInteract(event.getPlayer());
+                event.setCancelled(true);
             }
         }
     }

@@ -44,7 +44,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
 
         Player npc = (Player)this.m_entity.getBukkitEntity();
         npc.setCanPickupItems(false);
-        npc.setRemoveWhenFarAway(false);
 
         // Set tools and armor.
         ItemStack axe = new ItemStack(defaultItem);
@@ -128,7 +127,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
 
         DesireLookAtNearest desireLookAtNearest = behaviorEntity.getMind().getMovementDesire(DesireLookAtNearest.class);
 
-        behaviorEntity.getMind().addMovementDesire(new DesireMoveToLocation(destination), 5);
+        behaviorEntity.move(destination);
         behaviorEntity.lookAt(destination);
 
         double distanceAway = npcLocation.distance(destination);
@@ -175,7 +174,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
 
             public void run() {
                 // Walk the NPC back to its original location.
-                this.entity.getMind().addMovementDesire(new DesireMoveToLocation(this.returnLocation), 5);
+                this.entity.move(this.returnLocation);
 
                 // Turn back to the player to correspond with te walking.
                 entity.lookAt(this.toLookAt);

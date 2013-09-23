@@ -1,5 +1,6 @@
 package com.bitlimit.NPCs;
 
+import de.kumpelblase2.remoteentities.CreateEntityContext;
 import de.kumpelblase2.remoteentities.RemoteEntities;
 import net.minecraft.server.v1_6_R3.EntityHuman;
 import org.bukkit.*;
@@ -19,7 +20,6 @@ import java.util.HashMap;
 
 public class NPCCommandExecutor implements CommandExecutor, Listener {
     private final NPCs plugin;
-    private HashMap<RemoteEntity, String> NPCNames = new HashMap<RemoteEntity, String>();
 
     public NPCCommandExecutor(NPCs plugin) {
         this.plugin = plugin;
@@ -54,10 +54,32 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
             int ID = Integer.parseInt(args[1]);
             RemoteEntity entity = this.plugin.manager.getRemoteEntityByID(ID);
 
-            this.NPCNames.remove(entity);
             this.plugin.manager.removeEntity(ID, true);
 
             sender.sendMessage(ChatColor.GREEN + "Entity of ID \"" + ID + "\" removed.");
+        } else if (args[0].toLowerCase().equals("tp") && sender.hasPermission("npc.tp")) {
+            if (args.length < 2) {
+                sender.sendMessage(ChatColor.RED + "Entity ID required.");
+                return false;
+            }
+
+            if (args.length < 5) {
+                sender.sendMessage(ChatColor.RED + "Coordinates required.");
+                return false;
+            }
+
+            if (args.length < 6) {
+                sender.sendMessage(ChatColor.RED + "World required.");
+                return false;
+            }
+
+            int ID = Integer.parseInt(args[1]);
+            double x = Double.parseDouble(args[2]);
+            double y = Double.parseDouble(args[3]);
+            double z = Double.parseDouble(args[4]);
+
+            RemoteEntity entity = this.plugin.manager.getRemoteEntityByID(ID);
+            entity.teleport(new Location(Bukkit.getWorld(args[5]), x, y, z));
         } else
             sender.sendMessage(ChatColor.RED + "You don't have permission to execute this command.");
 
@@ -83,31 +105,30 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
             return;
         }
 
-        Player player = null;
 
-        Location toSpawnLocation;
+
         if (sender instanceof Player) {
-            player = (Player)sender;
-            toSpawnLocation = player.getLocation();
-        } else {
-            World firstWorld = Bukkit.getServer().getWorlds().get(0);
-            Location worldSpawn = firstWorld.getSpawnLocation();
-            toSpawnLocation = firstWorld.getHighestBlockAt(worldSpawn).getLocation();
+            Player player = (Player)sender;
+            Location toSpawnLocation = player.getLocation();
+
+            if (args[1].length() > 16) {
+                sender.sendMessage(ChatColor.RED + "Name exceeds maximum length.");
+                return;
+            }
+
+            // Create the NPC.
+            RemotePlayer entity = (RemotePlayer)this.plugin.manager.createNamedEntity(RemoteEntityType.Human, toSpawnLocation, ChatColor.ITALIC + args[1] + ChatColor.RESET, true);
+
+            // Set up desires and behaviors (the fairy dust.)
+            entity.getMind().addMovementDesire(new DesireLookRandomly(), 1);
+            entity.getMind().addMovementDesire(new DesireLookAtNearest(EntityHuman.class, 16F, 1.0F), 2);
+            entity.getMind().addBehaviour(new BlacksmithInteractBehavior(entity));
+
+            Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
+//            player.sendMessage(ChatColor.);
+
+            this.plugin.saveData();
         }
-
-        // Create the NPC.
-        RemotePlayer entity = (RemotePlayer)this.plugin.manager.createNamedEntity(RemoteEntityType.Human, toSpawnLocation, ChatColor.ITALIC + args[1] + ChatColor.RESET, true);
-
-        // Set up desires and behaviors (the fairy dust.)
-        entity.getMind().addMovementDesire(new DesireLookRandomly(), 1);
-        entity.getMind().addMovementDesire(new DesireLookAtNearest(EntityHuman.class, 16F, 1.0F), 2);
-        entity.getMind().addBehaviour(new BlacksmithInteractBehavior(entity));
-        entity.getMind().blockFeelings(false);
-
-        Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
-
-        entity.save();
-        this.plugin.manager.saveEntities();
     }
 
 

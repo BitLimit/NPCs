@@ -1,22 +1,17 @@
 package com.bitlimit.NPCs;
 
-import de.kumpelblase2.remoteentities.api.thinking.BaseBehavior;
-import de.kumpelblase2.remoteentities.api.thinking.DesireType;
-import de.kumpelblase2.remoteentities.api.thinking.InteractBehavior;
-import de.kumpelblase2.remoteentities.entities.RemotePlayer;
-import de.kumpelblase2.remoteentities.api.thinking.goals.*;
-import de.kumpelblase2.remoteentities.api.RemoteEntity;
 import de.kumpelblase2.remoteentities.RemoteEntities;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.block.Block;
+import de.kumpelblase2.remoteentities.api.RemoteEntity;
+import de.kumpelblase2.remoteentities.api.thinking.InteractBehavior;
+import de.kumpelblase2.remoteentities.api.thinking.goals.DesireLookAtNearest;
+import de.kumpelblase2.remoteentities.api.thinking.goals.DesireLookRandomly;
+import de.kumpelblase2.remoteentities.entities.RemotePlayer;
 import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 
 public class BlacksmithInteractBehavior extends InteractBehavior {
     private static Material defaultItem = Material.DIAMOND_AXE;
@@ -30,17 +25,13 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
         this.onEntityUpdate();
     }
 
-    public void onInteract(Player player) {
-
-    }
-
     public void onEntityUpdate()
     {
         if (this.m_entity.getBukkitEntity() == null)
             return;
 
         this.m_entity.setPushable(false);
-        this.m_entity.setStationary(false);
+        this.m_entity.setStationary(true);
 
         Player npc = (Player)this.m_entity.getBukkitEntity();
         npc.setCanPickupItems(false);
@@ -65,11 +56,17 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
 
     }
 
-    public void onRightClickInteract(Player inPlayer) {
-        RemotePlayer behaviorEntity = (RemotePlayer) this.getRemoteEntity();
-        Player npc = (Player) behaviorEntity.getBukkitEntity();
+    public void onInteract(Player inPlayer)
+    {
 
-        ItemStack actionItem = inPlayer.getItemInHand();
+    }
+
+    public void onRightClickInteractEventWithPlayer(Player player)
+    {
+        RemotePlayer behaviorEntity = (RemotePlayer) this.getRemoteEntity();
+        Player npc = behaviorEntity.getBukkitEntity();
+
+        ItemStack actionItem = player.getItemInHand();
 
         if (actionItem.getType() == Material.NAME_TAG) {
             if (actionItem.getItemMeta().hasDisplayName()) {
@@ -81,40 +78,41 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
                 behaviorEntity.getManager().getAllEntities().clear();
                 behaviorEntity.getManager().loadEntities();
 
-                inPlayer.sendMessage(ChatColor.GREEN + "Rename successful.");
+                player.sendMessage(ChatColor.GREEN + "Rename successful.");
 
                 return;
             }
             else
             {
-                inPlayer.sendMessage(ChatColor.GOLD + "This entity's ID is \"" + behaviorEntity.getID() + "\"");
+                player.sendMessage(ChatColor.GOLD + "This entity's ID is \"" + behaviorEntity.getID() + "\"");
+                player.sendMessage(ChatColor.GOLD + this.getRemoteEntity().toString());
                 return;
             }
         }
 
         if (npc.getItemInHand().getType() != defaultItem) {
-            inPlayer.sendMessage(ChatColor.AQUA + npc.getDisplayName() + ChatColor.RED + " is busy!");
+            player.sendMessage(ChatColor.AQUA + npc.getDisplayName() + ChatColor.RED + " is busy!");
             return;
         } else if (actionItem.getMaxStackSize() != 1) {
             return;
         } else if (actionItem.getType() == Material.POTION) {
             return;
         } else if (actionItem.getDurability() == 0) {
-            inPlayer.sendMessage(ChatColor.RED + "Item is fully repaired.");
+            player.sendMessage(ChatColor.RED + "Item is fully repaired.");
             return;
         }
 
         // Creative mode users will be using this as a utility.
-        if (inPlayer.getGameMode() == GameMode.CREATIVE) {
+        if (player.getGameMode() == GameMode.CREATIVE) {
             actionItem.setDurability((short)0);
             return; // Repair instantly and call it a day.
         }
 
         // Record where the player had the item for their convenience.
-        int indexOfPreviouslyHeldItem = inPlayer.getInventory().getHeldItemSlot();
+        int indexOfPreviouslyHeldItem = player.getInventory().getHeldItemSlot();
 
         // Take the item from the player and put it in the NPC's hand.
-        inPlayer.setItemInHand(new ItemStack(Material.AIR));
+        player.setItemInHand(new ItemStack(Material.AIR));
         npc.setItemInHand(actionItem);
 
         // Capture the NPC's location and grab the closest anvil.
@@ -181,7 +179,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
             }
         }
 
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new ReturnNPC(npcLocation, behaviorEntity, inPlayer), wait + 20L);
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new ReturnNPC(npcLocation, behaviorEntity, player), wait + 20L);
 
         // Ran once the NPC is actually back near the player.
         class ReturnItem implements Runnable {
@@ -233,8 +231,9 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
             }
         }
 
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new ReturnItem(inPlayer, actionItem, npc, indexOfPreviouslyHeldItem), (wait * 2) + 20L);
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new ReturnItem(player, actionItem, npc, indexOfPreviouslyHeldItem), (wait * 2) + 20L);
     }
+
 
     // Grab the nearest location of a block with a certain material/type.
     private Location closestLocation(Location origin, Material type) {

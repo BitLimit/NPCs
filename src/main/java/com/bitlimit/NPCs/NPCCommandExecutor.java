@@ -1,22 +1,19 @@
 package com.bitlimit.NPCs;
 
-import de.kumpelblase2.remoteentities.CreateEntityContext;
-import de.kumpelblase2.remoteentities.RemoteEntities;
+import de.kumpelblase2.remoteentities.api.RemoteEntity;
+import de.kumpelblase2.remoteentities.api.RemoteEntityType;
+import de.kumpelblase2.remoteentities.api.thinking.goals.DesireLookAtNearest;
+import de.kumpelblase2.remoteentities.api.thinking.goals.DesireLookRandomly;
+import de.kumpelblase2.remoteentities.entities.RemotePlayer;
 import net.minecraft.server.v1_6_R3.EntityHuman;
-import org.bukkit.*;
-import org.bukkit.command.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import de.kumpelblase2.remoteentities.api.*;
-import de.kumpelblase2.remoteentities.api.thinking.goals.*;
-import de.kumpelblase2.remoteentities.entities.*;
-import org.bukkit.entity.LivingEntity;
-
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-
-import java.util.HashMap;
 
 public class NPCCommandExecutor implements CommandExecutor, Listener {
     private final NPCs plugin;

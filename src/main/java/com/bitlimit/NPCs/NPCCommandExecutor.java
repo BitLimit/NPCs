@@ -102,8 +102,6 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
             return;
         }
 
-
-
         if (sender instanceof Player) {
             Player player = (Player)sender;
             Location toSpawnLocation = player.getLocation();
@@ -118,11 +116,10 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
 
             // Set up desires and behaviors (the fairy dust.)
             entity.getMind().addMovementDesire(new DesireLookRandomly(), 1);
-            entity.getMind().addMovementDesire(new DesireLookAtNearest(EntityHuman.class, 16F, 1.0F), 2);
+            entity.getMind().addMovementDesire(new DesireLookAtNearest(EntityHuman.class, 8F, 1.0F), 2);
             entity.getMind().addBehaviour(new BlacksmithInteractBehavior(entity));
 
             Bukkit.broadcastMessage(ChatColor.WHITE + "<" + player.getDisplayName() + "> " + ChatColor.YELLOW + "A new blacksmith, dubbed " + ChatColor.AQUA + entity.getName() + ChatColor.YELLOW + ", has been synthesized on this fateful day.");
-//            player.sendMessage(ChatColor.);
 
             this.plugin.saveData();
         }

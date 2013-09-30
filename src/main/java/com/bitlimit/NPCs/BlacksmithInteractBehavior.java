@@ -29,7 +29,9 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
     public void onEntityUpdate()
     {
         if (this.m_entity.getBukkitEntity() == null)
+        {
             return;
+        }
 
         this.m_entity.setPushable(false);
         this.m_entity.setStationary(true);
@@ -54,7 +56,6 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
             itemStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 10); // Give it that glowing feeling.
 
         npc.getInventory().setArmorContents(armor); // Set it.
-
     }
 
     public void onInteract(Player inPlayer)
@@ -80,8 +81,7 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
             }
             else
             {
-                player.sendMessage(ChatColor.GOLD + "This entity's ID is \"" + behaviorEntity.getID() + "\"");
-                player.sendMessage(ChatColor.GOLD + this.getRemoteEntity().toString());
+                player.sendMessage(ChatColor.GOLD + "This entity's ID is \"" + behaviorEntity.getID() + "\".");
                 return;
             }
         }

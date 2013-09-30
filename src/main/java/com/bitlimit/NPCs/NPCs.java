@@ -22,6 +22,7 @@ public class NPCs extends JavaPlugin implements Listener {
 
             this.manager.setEntitySerializer(new YMLSerializer(this));
             this.manager.setSaveOnDisable(true);
+            this.manager.setRemovingDespawned(false);
             this.manager.loadEntities();
         } catch (Exception e) {
             e.printStackTrace();

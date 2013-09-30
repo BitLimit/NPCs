@@ -1,6 +1,7 @@
 package com.bitlimit.NPCs;
 
 import de.kumpelblase2.remoteentities.RemoteEntities;
+import de.kumpelblase2.remoteentities.api.DespawnReason;
 import de.kumpelblase2.remoteentities.api.RemoteEntity;
 import de.kumpelblase2.remoteentities.api.thinking.InteractBehavior;
 import de.kumpelblase2.remoteentities.api.thinking.goals.DesireLookAtNearest;
@@ -70,15 +71,10 @@ public class BlacksmithInteractBehavior extends InteractBehavior {
 
         if (actionItem.getType() == Material.NAME_TAG) {
             if (actionItem.getItemMeta().hasDisplayName()) {
-
+                String previousName = behaviorEntity.getName();
                 behaviorEntity.setName(ChatColor.ITALIC + actionItem.getItemMeta().getDisplayName());
-                behaviorEntity.getManager().saveEntities();
-
-                behaviorEntity.getManager().despawnAll();
-                behaviorEntity.getManager().getAllEntities().clear();
-                behaviorEntity.getManager().loadEntities();
-
-                player.sendMessage(ChatColor.GREEN + "Rename successful.");
+                Bukkit.broadcastMessage(ChatColor.GOLD + previousName + " is now " + behaviorEntity.getName());
+                this.onEntityUpdate();
 
                 return;
             }

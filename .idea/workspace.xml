@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3101b656-42d2-4ba0-a515-75322b3a125b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" afterPath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" afterPath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -38,10 +37,10 @@
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/api/pathfinding/checkers/DoorOpenChecker.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829146342" ignored="false" />
     <file path="/DoorOpenChecker.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829121553" ignored="false" />
     <file path="/BitLimitNPCs.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829375657" ignored="false" />
-    <file path="/BlacksmithInteractBehavior.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380504147507" ignored="false" />
+    <file path="/BlacksmithInteractBehavior.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380512158756" ignored="false" />
     <file path="/plugin.yml" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379830158491" ignored="false" />
     <file path="/YMLSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380496852943" ignored="false" />
-    <file path="/NPCs.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380501710523" ignored="false" />
+    <file path="/NPCs.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380512370057" ignored="false" />
     <file path="/PreparationSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379831652038" ignored="false" />
     <file path="/EntityData.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379832713651" ignored="false" />
     <file path="/BehaviorData.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380495902538" ignored="false" />
@@ -214,7 +213,7 @@
       <file leaf-file-name="BlacksmithInteractBehavior.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="20" selection-start="3192" selection-end="3192" vertical-scroll-proportion="0.0">
+            <state line="34" column="42" selection-start="1229" selection-end="1229" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -223,7 +222,7 @@
       <file leaf-file-name="NPCs.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="43" selection-start="1032" selection-end="1032" vertical-scroll-proportion="-0.6881919">
+            <state line="92" column="35" selection-start="3095" selection-end="3095" vertical-scroll-proportion="0.9169742">
               <folding />
             </state>
           </provider>
@@ -252,8 +251,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" />
       </list>
     </option>
   </component>
@@ -743,14 +742,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="20" selection-start="3192" selection-end="3192" vertical-scroll-proportion="0.0">
+        <state line="34" column="42" selection-start="1229" selection-end="1229" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="43" selection-start="1032" selection-end="1032" vertical-scroll-proportion="-0.6881919">
+        <state line="92" column="35" selection-start="3095" selection-end="3095" vertical-scroll-proportion="0.9169742">
           <folding />
         </state>
       </provider>

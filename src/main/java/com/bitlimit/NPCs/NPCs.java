@@ -8,6 +8,7 @@ import de.kumpelblase2.remoteentities.persistence.serializers.YMLSerializer;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -75,6 +76,21 @@ public class NPCs extends JavaPlugin implements Listener {
                     blacksmithInteractBehavior.onRightClickInteractEventWithPlayer(interactEvent.getPlayer());
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event)
+    {
+        if (!(event.getEntity() instanceof LivingEntity))
+        {
+            return;
+        }
+
+        LivingEntity livingEntity = (LivingEntity)event.getEntity();
+        if (RemoteEntities.isRemoteEntity(livingEntity))
+        {
+            event.setCancelled(true);
         }
     }
 }

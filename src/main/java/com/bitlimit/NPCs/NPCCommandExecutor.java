@@ -106,7 +106,7 @@ public class NPCCommandExecutor implements CommandExecutor, Listener {
             Player player = (Player)sender;
             Location toSpawnLocation = player.getLocation();
 
-            if (args[1].length() > 16) {
+            if (args[1].length() > 12) {
                 sender.sendMessage(ChatColor.RED + "Name exceeds maximum length.");
                 return;
             }

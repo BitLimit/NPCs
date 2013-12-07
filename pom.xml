@@ -7,7 +7,7 @@
 
   <groupId>com.bitlimit.NPCs</groupId>
   <artifactId>NPCs</artifactId>
-  <version>0.6.1</version>
+  <version>0.6.2</version>
   <name>NPCs</name>
   <description>Non-playing characters.</description>
 
@@ -30,7 +30,7 @@
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>craftbukkit</artifactId>
-      <version>1.6.4-R0.1-SNAPSHOT</version>
+      <version>1.7.2-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

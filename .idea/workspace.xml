@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3101b656-42d2-4ba0-a515-75322b3a125b" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_bukkit_craftbukkit_1_6_4_R0_1_SNAPSHOT.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BitLimitNPCs.iml" afterPath="$PROJECT_DIR$/BitLimitNPCs.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" afterPath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java" afterPath="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BitLimitNPCs.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380516987326" ignored="false" />
+    <file path="/Dummy.txt" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1386382409264" ignored="false" />
     <file path="/pom.xml" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379825069737" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/ChunkEntityLoader.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827659170" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/persistence/serializers/YMLSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379893596122" ignored="false" />
@@ -25,7 +28,7 @@
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/persistence/serializers/JSONSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827659170" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/persistence/DesireData.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827817129" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/persistence/ISingleEntitySerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827659170" ignored="false" />
-    <file path="/NPCCommandExecutor.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379912360304" ignored="false" />
+    <file path="/NPCCommandExecutor.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1386382755495" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/api/Nameable.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827659170" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/api/RemoteEntityHandle.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827659170" ignored="false" />
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/api/RemoteEntityType.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379827659170" ignored="false" />
@@ -38,7 +41,7 @@
     <file path="$PROJECT_DIR$/../../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/api/pathfinding/checkers/DoorOpenChecker.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829146342" ignored="false" />
     <file path="/DoorOpenChecker.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829121553" ignored="false" />
     <file path="/BitLimitNPCs.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379829375657" ignored="false" />
-    <file path="/BlacksmithInteractBehavior.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380512158756" ignored="false" />
+    <file path="/BlacksmithInteractBehavior.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380591529318" ignored="false" />
     <file path="/plugin.yml" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1379830158491" ignored="false" />
     <file path="/YMLSerializer.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380496852943" ignored="false" />
     <file path="/NPCs.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380512370057" ignored="false" />
@@ -123,6 +126,7 @@
     <file path="$PROJECT_DIR$/../Remote-Entities/src/main/java/de/kumpelblase2/remoteentities/api/thinking/BaseBehavior.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380499570493" ignored="false" />
     <file path="/ReflectionUtil.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380498470508" ignored="false" />
     <file path="/Mind.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380503538488" ignored="false" />
+    <file path="/a.java" changelist="3101b656-42d2-4ba0-a515-75322b3a125b" time="1380691827793" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +141,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -171,7 +176,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -185,7 +189,7 @@
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="75" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
+            <state line="29" column="16" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -200,19 +204,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NPCCommandExecutor.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="NPCCommandExecutor.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="91" selection-start="4918" selection-end="4918" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="39" column="45" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.15378548">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlacksmithInteractBehavior.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="BlacksmithInteractBehavior.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="108" selection-start="3051" selection-end="3051" vertical-scroll-proportion="0.764774">
+            <state line="3" column="63" selection-start="82" selection-end="139" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -221,7 +227,7 @@
       <file leaf-file-name="NPCs.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="66" selection-start="1505" selection-end="1505" vertical-scroll-proportion="0.0">
+            <state line="41" column="5" selection-start="1505" selection-end="1505" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -250,8 +256,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java" />
       </list>
     </option>
   </component>
@@ -263,10 +269,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="821" />
-    <option name="y" value="160" />
-    <option name="width" value="1051" />
-    <option name="height" value="1024" />
+    <option name="y" value="22" />
+    <option name="width" value="2560" />
+    <option name="height" value="1414" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -296,6 +301,35 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NPCs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BitLimitNPCs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NPCs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BitLimitNPCs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.bitlimit.NPCs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -400,35 +434,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NPCs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BitLimitNPCs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NPCs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BitLimitNPCs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.bitlimit.NPCs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -438,7 +443,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="options.lastSelected" value="reference.settings.ide.settings.notifications" />
+    <property name="options.lastSelected" value="appearance" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.side.proportion" value="0.4172494" />
@@ -561,7 +566,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="821" y="160" width="1051" height="1024" extended-state="0" />
+    <frame x="0" y="22" width="2560" height="1414" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -575,17 +580,17 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45353982" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18208955" sideWeight="0.6426991" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18178202" sideWeight="0.66126543" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18208955" sideWeight="0.34955752" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18178202" sideWeight="0.33333334" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32964602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45353982" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -653,7 +658,9 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="152" column="64" selection-start="6105" selection-end="6105" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -724,29 +731,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="75" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="91" selection-start="4918" selection-end="4918" vertical-scroll-proportion="0.0">
+        <state line="29" column="16" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="66" selection-start="1505" selection-end="1505" vertical-scroll-proportion="0.0">
+        <state line="41" column="5" selection-start="1505" selection-end="1505" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/BlacksmithInteractBehavior.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="108" selection-start="3051" selection-end="3051" vertical-scroll-proportion="0.764774">
+        <state line="3" column="63" selection-start="82" selection-end="139" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitlimit/NPCs/NPCCommandExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="45" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.15378548">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -5,7 +5,7 @@ import de.kumpelblase2.remoteentities.api.RemoteEntityType;
 import de.kumpelblase2.remoteentities.api.thinking.goals.DesireLookAtNearest;
 import de.kumpelblase2.remoteentities.api.thinking.goals.DesireLookRandomly;
 import de.kumpelblase2.remoteentities.entities.RemotePlayer;
-import net.minecraft.server.v1_6_R3.EntityHuman;
+import net.minecraft.server.v1_7_R1.EntityHuman;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
